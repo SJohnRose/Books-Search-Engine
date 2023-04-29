@@ -5,9 +5,9 @@ const { ApolloServer } = require('apollo-server-express');
 // Import the two parts of a GraphQL schema
 const { typeDefs, resolvers } = require('./schemas');
 
-const path = require('path');
+//const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
+//const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
