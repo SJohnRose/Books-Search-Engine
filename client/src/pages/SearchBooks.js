@@ -67,10 +67,20 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-
+    console.log(Auth.getProfile().data._id, bookToSave);
     try {
       const {data} = await saveBook({
-          variables: {...bookToSave},
+          variables: {
+            userId: Auth.getProfile().data._id,
+            // savedBooks: bookToSave},
+            authors: bookToSave.authors,
+            description: bookToSave.description,
+            bookId: bookToSave.bookId,
+            image: bookToSave.image,
+            link: bookToSave.link,
+            title: bookToSave.title
+          }
+
       });
           // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);

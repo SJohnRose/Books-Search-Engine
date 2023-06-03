@@ -5,9 +5,9 @@ export const LOGIN_USER = gql`
         loginUser(email: $email, password: $password) {
             token
             user {
+                _id    
                 username
-                email
-                password
+                
             }
         }
     }
@@ -18,9 +18,9 @@ export const ADD_USER = gql`
         addUser(username: $username, email: $email, password: $password) {
             token
             user {
+                _id
                 username
-                email
-                password
+                
             }
         }
     }
@@ -31,7 +31,6 @@ export const SAVE_BOOK = gql`
         saveBook(userId: $userId, authors: $authors, description: $description, bookId: $bookId, image: $image, link: $link, title: $title) {
             _id
             username
-            email
             savedBooks {
                 _id
                 authors
