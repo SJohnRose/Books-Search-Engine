@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import {useParams} from 'react-router-dom';
 
 //import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
@@ -9,12 +10,19 @@ import { REMOVE_BOOK } from '../utils/mutations';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState({});
+  const { username: userParam } = useParams();
 
-  const userQuery = useQuery(GET_ME);
-  const myData = userQuery.data?.myData || [];
-  console.log(myData);
-  const [removeBook, {data, loading, error}] = useMutation(REMOVE_BOOK);
+  const { loading, data } = useQuery(GET_ME, {
+    variables: { username: userParam },
+  });
+
+  //const { loading, error, data } = useQuery(GET_ME);
+  const myData = data?.me || {};
+  console.log(data);
+  
+  //const [removeBook, {data, loading, error}] = useMutation(REMOVE_BOOK);
+  const removeBook = useMutation(REMOVE_BOOK);
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -33,7 +41,7 @@ const SavedBooks = () => {
     catch (err) {
       console.error(err);
     }
-  };
+  }
 
   
   
