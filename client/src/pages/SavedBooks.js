@@ -11,15 +11,15 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   //const [userData, setUserData] = useState({});
-  const { username: userParam } = useParams();
+  //const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(GET_ME, {
-    variables: { username: userParam },
-  });
+  // const { loading, data } = useQuery(GET_ME, {
+  //   variables: { username: 'Shamini' },
+  // });
 
-  //const { loading, error, data } = useQuery(GET_ME);
+  const { loading, error, data } = useQuery(GET_ME);
   const myData = data?.me || {};
-  console.log(data);
+  console.log(myData);
   
   //const [removeBook, {data, loading, error}] = useMutation(REMOVE_BOOK);
   const removeBook = useMutation(REMOVE_BOOK);
@@ -42,10 +42,11 @@ const SavedBooks = () => {
       console.error(err);
     }
   }
-
+  if(loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
   
   
-
+  if(myData && myData.savedBooks) {
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -54,12 +55,13 @@ const SavedBooks = () => {
         </Container>
       </Jumbotron>
       <Container>
-        <h2>
+                     
+           <h2>
            {myData.savedBooks.length
             ? `Viewing ${myData.savedBooks.length} saved ${myData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'} 
              
-        </h2>
+        </h2> 
         <CardColumns>
           {myData.savedBooks.map((book) => {
             return (
@@ -76,10 +78,12 @@ const SavedBooks = () => {
               </Card>
             );
           })}
-        </CardColumns>
+        </CardColumns> 
       </Container>
     </>
   );
 };
+}
+
 
 export default SavedBooks;
