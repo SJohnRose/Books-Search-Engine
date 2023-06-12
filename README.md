@@ -2,7 +2,11 @@
 A book search engine built using the MERN stack.
 
 # Features
-* Apollo Server for GraphQL queries and mutations to fetch and modify data.
+* Apollo Server used for GraphQL queries and mutations to fetch and modify data.
+* React.js used as front-end to build the interface for the application.
+* Express.js and Node.js used in the server tier to handle requests from the React.js front-end.
+* MongoDB used in the database tier to store data from the application.
+* Deployed to Heroku with MongoDB Atlas as backend server.
 
 
 # User Story
@@ -54,7 +58,7 @@ The application's appearance and functionality can be seen below.
 ![image](https://github.com/SJohnRose/Books-Search-Engine/assets/115912745/36b08090-b9c3-4bba-bc00-306330e2c8e9)
 
 # How to access the application?
-Github URL: https://github.com/SJohnRose/Books-Search-Engine
+Github URL: https://github.com/SJohnRose/Books-Search-Engine  
 Deployed URL: https://morning-ravine-81050.herokuapp.com/ 
 
 
